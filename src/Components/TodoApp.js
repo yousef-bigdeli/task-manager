@@ -8,8 +8,12 @@ const TodoApp = () => {
   const addTodoHandler = (input) => {
     const id =
       todos.reduce((max, item) => (max = max > item.id ? max : item.id), 0) + 1;
+
     setTodos((prevTodos) => {
-      return [...prevTodos, { id, text: input, isCompleted: false }];
+      return [
+        ...prevTodos,
+        { id, text: input, isCompleted: false, isEdit: false },
+      ];
     });
   };
 
@@ -28,8 +32,12 @@ const TodoApp = () => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
-  const editTodo = (id) => {
-    console.log(id)
+  const editTodoHandler = (value, id) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((item) => {
+        return item.id === id ? { ...item, text: value, isEdit: false } : item;
+      })
+    );
   };
 
   //todos
@@ -40,7 +48,8 @@ const TodoApp = () => {
         todos={todos}
         onComplete={completeTodo}
         onDelete={deleteTodo}
-        onEdit={editTodo}
+        editTodo={editTodoHandler}
+        setTodos={setTodos}
       />
     </div>
   );

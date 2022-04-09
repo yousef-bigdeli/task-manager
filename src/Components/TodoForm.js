@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const TodoForm = ({ addTodoHandler }) => {
-  const [inputValue, setInputValue] = useState("");
+const TodoForm = ({ addTodoHandler, initialValue = "", edit = {} }) => {
+  const [inputValue, setInputValue] = useState(initialValue);
 
   const changeHandler = (e) => {
     setInputValue(e.target.value);
@@ -9,13 +9,18 @@ const TodoForm = ({ addTodoHandler }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    addTodoHandler(inputValue);
+    if (edit.id) {
+      addTodoHandler(inputValue, edit.id);
+    } else {
+      addTodoHandler(inputValue);
+    }
     setInputValue("");
   };
+  
   return (
     <form onSubmit={submitHandler}>
       <input type="text" value={inputValue} onChange={changeHandler} />
-      <button type="submit">Add</button>
+      <button type="submit">{edit.id ? "Update" : "Add"}</button>
     </form>
   );
 };
