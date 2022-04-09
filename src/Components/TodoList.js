@@ -12,7 +12,7 @@ const TodoList = ({ todos, onComplete, onDelete, editTodo, setTodos }) => {
             return (
               <TodoForm
                 key={item.id}
-                initialValue={item.text}
+                // initialValue={item.text}
                 edit={item}
                 addTodoHandler={editTodo}
               />

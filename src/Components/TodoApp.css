@@ -59,3 +59,9 @@
 .delete-btn{
   color: #e11d48;
 }
+
+.filter{
+  align-self: flex-start;
+  margin-bottom: 8px;
+  width: 150px;
+}
