@@ -1,20 +1,26 @@
 import { useState } from "react";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
+import "./TodoApp.css";
 
 const TodoApp = () => {
   const [todos, setTodos] = useState([]);
 
   const addTodoHandler = (input) => {
-    const id =
-      todos.reduce((max, item) => (max = max > item.id ? max : item.id), 0) + 1;
+    if (input) {
+      const id =
+        todos.reduce((max, item) => (max = max > item.id ? max : item.id), 0) +
+        1;
 
-    setTodos((prevTodos) => {
-      return [
-        ...prevTodos,
-        { id, text: input, isCompleted: false, isEdit: false },
-      ];
-    });
+      setTodos((prevTodos) => {
+        return [
+          ...prevTodos,
+          { id, text: input, isCompleted: false, isEdit: false },
+        ];
+      });
+    } else {
+      alert("Please enter a name");
+    }
   };
 
   const completeTodo = (id) => {

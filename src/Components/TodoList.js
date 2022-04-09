@@ -6,7 +6,7 @@ const TodoList = ({ todos, onComplete, onDelete, editTodo, setTodos }) => {
     return todos.length === 0 ? (
       <p>Add some todos</p>
     ) : (
-      <div>
+      <>
         {todos.map((item) => {
           if (item.isEdit) {
             return (
@@ -36,7 +36,7 @@ const TodoList = ({ todos, onComplete, onDelete, editTodo, setTodos }) => {
             />
           );
         })}
-      </div>
+      </>
     );
   };
 

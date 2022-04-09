@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { FaPlus, FaCheck } from "react-icons/fa";
 
 const TodoForm = ({ addTodoHandler, initialValue = "", edit = {} }) => {
   const [inputValue, setInputValue] = useState(initialValue);
+  const inputRef = useRef();
 
   const changeHandler = (e) => {
     setInputValue(e.target.value);
@@ -16,11 +18,22 @@ const TodoForm = ({ addTodoHandler, initialValue = "", edit = {} }) => {
     }
     setInputValue("");
   };
-  
+
+  useEffect(() => {
+    inputRef.current.focus();
+  })
+
   return (
-    <form onSubmit={submitHandler}>
-      <input type="text" value={inputValue} onChange={changeHandler} />
-      <button type="submit">{edit.id ? "Update" : "Add"}</button>
+    <form onSubmit={submitHandler} className="todo-form">
+      <input
+        type="text"
+        value={inputValue}
+        onChange={changeHandler}
+        className="todo-input"
+        placeholder="Enter todo name..."
+        ref={inputRef}
+      />
+      <button type="submit">{edit.id ? <FaCheck /> : <FaPlus />}</button>
     </form>
   );
 };
