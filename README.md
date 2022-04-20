@@ -1,6 +1,11 @@
-### `Todo List`
+# Task Manager App
+An application for creating different lists of tasks. This project was developed by React.
 
+
+## Available Scripts
 In the project directory, you can run:
+### `npm install`
+Install dependencies.
 
 ### `npm start`
 
